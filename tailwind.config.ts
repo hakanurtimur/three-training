@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 import colors from "tailwindcss/colors";
 
 const config: Config = {
+  darkMode: ["class"],
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -11,13 +12,15 @@ const config: Config = {
     extend: {
       colors: {
         primary: colors.slate,
-        secondary: colors.fuchsia,
-        tertiary: colors.violet,
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        secondary: colors.zinc,
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;
