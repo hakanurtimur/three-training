@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        pixefilly: ["PixefillySans", "sans-serif"],
+      },
       colors: {
         primary: colors.slate,
         secondary: colors.zinc,
@@ -18,6 +21,16 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      animation: {
+        typewriter: "typewriter 2s steps(11) forwards",
+      },
+      keyframes: {
+        typewriter: {
+          to: {
+            left: "100%",
+          },
+        },
       },
     },
   },

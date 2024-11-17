@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'PixefillySans';
+  src: url('/font/PixelifySans-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -1,27 +1,42 @@
-import { Mesh, Texture } from "three";
+import { PlanetModel } from "@/models/planetModel";
+import { useTexture } from "@react-three/drei";
+import { Mesh } from "three";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
 interface Props {
-  position: [number, number, number];
-  size: number;
-  animate: boolean;
-  texture: Texture;
+  planet: PlanetModel;
+  onPlanetClick: (planet: Mesh) => void;
 }
 
-const Planet = ({ position, size, animate, texture }: Props) => {
-  const cubeRef = useRef<Mesh>(null!);
+const Planet = ({ planet, onPlanetClick }: Props) => {
+  const texture = useTexture(planet.imageUri);
+  const planetRef = useRef<Mesh>(null!);
 
   useFrame((_, delta) => {
-    if (!cubeRef.current || !animate) return;
-    cubeRef.current.rotation.x += delta;
-    cubeRef.current.rotation.y += delta;
-    cubeRef.current.rotation.z += delta;
+    const planetObj = planetRef.current;
+    if (!planet) return;
+    planetObj.rotation.y += delta * planet.rotationSpeed * 100;
   });
 
   return (
-    <mesh ref={cubeRef} position={position}>
-      <sphereGeometry args={[size, 32, 16]} />
+    <mesh
+      castShadow
+      receiveShadow
+      rotation={[0, 0, 0]}
+      position={[planet.scaledDistance, 0, 0]}
+      ref={planetRef}
+      onClick={() => {
+        onPlanetClick(planetRef.current);
+      }}
+      onPointerEnter={() => {
+        document.body.style.cursor = "pointer";
+      }}
+      onPointerLeave={() => {
+        document.body.style.cursor = "auto";
+      }}
+    >
+      <sphereGeometry args={[planet.scaledRadius, 32, 16]} />
       <meshStandardMaterial map={texture} />
     </mesh>
   );
