@@ -75,7 +75,7 @@ export default function Home() {
   console.log(targetPlanetId);
 
   return (
-    <div className="h-screen w-screen bg-transparent text-white p-5 relative flex font-pixefilly">
+    <div className="h-screen w-screen bg-transparent relative flex font-pixefilly text-star-white">
       <div className="overflow-hidden min-w-[1080px] min-h-[1080px] relative">
         <CanvasContainer
           isAnimating={isAnimating}
@@ -92,7 +92,7 @@ export default function Home() {
           </div>
         )}
       </div>
-      <div className="flex-grow-0 flex-shrink flex flex-col space-y-4 px-4 items-stretch">
+      <div className="flex-1 flex flex-col space-y-4 px-4 items-stretch p-5 bg-midnight-blue">
         {targetPlanetId === undefined ? (
           <>
             <h1 className="text-6xl text-center">
@@ -107,13 +107,43 @@ export default function Home() {
             </p>
           </>
         ) : planet ? (
-          <div className="flex flex-col w-full space-y-4 animate-in slide-in-from-bottom-44 duration-1000">
-            <h1 className="text-6xl text-center">{planet.name}</h1>
-            <p className="text-xl text-center ">{planet.description}</p>
-            {/*<p className="text-lg text-center ">{planet.more_information}</p>*/}
-          </div>
+          targetPlanetId === "Sun" ? (
+            <div className="flex flex-col w-full space-y-4 animate-in slide-in-from-bottom-44 duration-1000">
+              <h1 className="text-6xl text-center">{planet.name}</h1>
+              <p className="text-xl text-center ">{planet.description}</p>
+              <p className="text-lg text-center ">
+                {planet.more_information.composition}
+              </p>
+              <p className="text-lg text-center ">
+                {planet.more_information.surface_features}
+              </p>
+              <p className="text-lg text-center ">
+                {planet.more_information.exploration_missions}
+              </p>
+              <p className="text-lg text-center ">
+                {planet.more_information.interesting_facts}
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col w-full space-y-4 animate-in slide-in-from-bottom-44 duration-1000">
+              <h1 className="text-6xl text-center">{planet.name}</h1>
+              <p className="text-xl text-center ">{planet.description}</p>
+              <p className="text-lg text-center ">
+                {planet.more_information.atmospheric_composition}
+              </p>
+              <p className="text-lg text-center ">
+                {planet.more_information.surface_features}
+              </p>
+              <p className="text-lg text-center ">
+                {planet.more_information.exploration_missions}
+              </p>
+              <p className="text-lg text-center ">
+                {planet.more_information.interesting_facts}
+              </p>
+            </div>
+          )
         ) : (
-          <div className="w-full">Loading... </div>
+          <div className="min-w-full">Loading... </div>
         )}
         {targetPlanetId === undefined && (
           <Button onClick={handleBtnClick} className="animate-pulse">
@@ -122,13 +152,13 @@ export default function Home() {
         )}
         {targetPlanetId !== null && (
           <Button
-            className="animate-in slide-in-from-bottom-44 duration-1000"
+            className="transition-transform animate-in slide-in-from-bottom-44 duration-1000"
             onClick={() => {
               setTargetPlanetId(undefined);
               handleResetCamera();
             }}
           >
-            Zoom Out
+            Center Camera
           </Button>
         )}
       </div>

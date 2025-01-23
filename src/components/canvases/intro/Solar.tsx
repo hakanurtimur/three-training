@@ -46,7 +46,8 @@ const Solar = ({ isAnimating, controlsRef, onTargetPlanet }: Props) => {
     camera.position.copy(initialPosition);
     camera.quaternion.copy(initialQuaternion);
 
-    if (controlsRef && controlsRef.current) {
+    if (controlsRef) {
+      // @ts-expect-error controlsRef is not null
       controlsRef.current.enabled = false;
     }
 
@@ -69,9 +70,12 @@ const Solar = ({ isAnimating, controlsRef, onTargetPlanet }: Props) => {
         camera.quaternion.normalize();
       },
       onComplete: () => {
-        if (controlsRef && controlsRef.current) {
+        if (controlsRef) {
+          // @ts-expect-error controlsRef is not null
           controlsRef.current.target.copy(planetWorldPosition);
+          // @ts-expect-error controlsRef is not null
           controlsRef.current.update();
+          // @ts-expect-error controlsRef is not null
           controlsRef.current.enabled = true;
         }
       },

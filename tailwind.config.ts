@@ -16,22 +16,24 @@ const config: Config = {
       colors: {
         primary: colors.slate,
         secondary: colors.zinc,
+        "midnight-blue": "#2C3E50",
+        "space-gray": "#34495E",
+        "star-white": "#ECF0F1",
+        "solar-gold": "#F1C40F",
+        "meteor-red": "#E74C3C",
+        "comet-cyan": "#1ABC9C",
+        "nebula-purple": "#9B59B6",
+        "lunar-light": "#BDC3C7",
+        "asteroid-silver": "#95A5A6",
+        "void-black": "#2C3E50",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      animation: {
-        typewriter: "typewriter 2s steps(11) forwards",
-      },
-      keyframes: {
-        typewriter: {
-          to: {
-            left: "100%",
-          },
-        },
-      },
+      animation: {},
+      keyframes: {},
     },
   },
   plugins: [require("tailwindcss-animate")],
